@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /*Config body*/
+        body {
+            background-color: darkblue;
+            text-align: center;
+            color: white;
+        }
+
+        /*Config buttn*/
+        button {
+            background-color: darkgray;
+            color: black;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: medium;
+            font-weight: bold;
+            border: 2px solid white;
+            border-radius: 2px;
+            text-align: center;
+            padding: 5px 20px 5px 20px;
+            cursor: pointer;
+        }
+        button:hover{
+            background-color: blue;
+            color: white;
+        }
+        button:focus {
+            outline: none; /* Remove a linha de foco padrão do navegador */
+        }
+
+        /*Config input*/
+        input{
+            padding: 5px 5px 5px 5px;
+            border-radius: 2px;
+            border-color: white;
+            border-style: ridge;
+        }
+    </style>
+</head>
+<body>
+    <h1>Informe seu CPF ou CNPJ</h1>
+    <!-- Exibe mensagens de alerta -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <ul>
+                {% for category, message in messages %}
+                    <li style="color: {% if category == 'error' %}red{% else %}green{% endif %};">
+                        {{ message }}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    
+    <form method="post" action="/">
+        <label for="cpf_cnpj">CPF/CNPJ:</label>
+        <input type="text" name="cpf_cnpj" id="cpf_cnpj">
+        <button type="submit">Enviar</button>
+    </form>
+</body>
+</html>
